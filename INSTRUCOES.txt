@@ -1,0 +1,56 @@
+═══════════════════════════════════════════════
+  Imbalance Chart v6 - Canvas Puro (sem Lightweight Charts)
+═══════════════════════════════════════════════
+
+MUDANÇA PRINCIPAL:
+  Lightweight Charts REMOVIDA. O chart agora é 100% Canvas2D.
+  Isso dá controle total sobre renderização footprint.
+
+BACKEND:
+  O backend é o MESMO da v5.1. Se o seu /history já funciona,
+  NÃO precisa trocar o backend.
+
+  Se /history AINDA dá 404:
+    1. Pare o servidor antigo (Ctrl+C)
+    2. Copie backend/mt5_bridge_server.py para:
+       C:\Users\ceplac\Documents\imbalance-chart\backend\
+    3. Rode: python backend\mt5_bridge_server.py
+    4. Verifique: http://localhost:8000/ deve mostrar v5.1
+
+FRONTEND:
+  1. Copie TODA a pasta frontend/ para:
+     C:\Users\ceplac\Documents\imbalance-chart\frontend\
+  2. Rode: npm install  (pra remover lightweight-charts)
+  3. Rode: npm run dev
+
+CONTROLES DO CHART:
+  - Scroll (roda mouse): navegar pelos clusters
+  - Ctrl + Scroll: zoom in/out
+  - Click: selecionar cluster
+  - Drag: arrastar para navegar
+
+LAYOUT:
+  ┌─────────────────────────────────────────────┐
+  │ DELTA BARS (topo)                           │
+  ├───┬───┬───┬───┬───────┬──────┐              │
+  │   │   │   │   │ VOL   │PRICE │              │
+  │   │FP │FP │FP │PROFILE│SCALE │              │
+  │   │   │   │   │       │      │              │
+  ├───┴───┴───┴───┴───────┴──────┤              │
+  │ VOLUME HISTOGRAM              │              │
+  ├───────────────────────────────┤              │
+  │ TIME SCALE                    │              │
+  └───────────────────────────────┘
+
+FEATURES VISUAIS:
+  - Footprint com heatmap (cores variam com intensidade)
+  - Sell à esquerda (vermelho), Buy à direita (verde)
+  - POC: linha tracejada amarela em cada cluster
+  - Delta bars: área dedicada no topo
+  - Volume Profile: painel lateral agregado
+  - Crosshair: linhas + labels de preço/hora
+  - Imbalance arrows: setas diagonais onde ratio >= 3:1
+  - Forming cluster: borda dourada tracejada + label LIVE
+  - Body ratio warning: ⚠ quando < 35%
+
+═══════════════════════════════════════════════
